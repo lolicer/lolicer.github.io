@@ -76,7 +76,7 @@
             {
                 main:document.getElementById('count'),
                 display : function(num){
-                    this.main.innerHTML=num;
+                    this.main.innerHTML=（num<10）?('0'+num):num;
                 }
             }
 
