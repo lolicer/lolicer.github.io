@@ -1,0 +1,113 @@
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>红绿灯倒计时</title>
+        <style>
+            .outer
+            {
+                width:290px;
+                height:70px;
+                border-radius:8px;
+                border:3px solid #000;
+            }
+            .outer div
+            {
+                float:left;
+                margin-left:20px;
+                width:45px; 
+                height: 45px;
+                border-radius: 45px;
+                border:1px solid #000;
+                margin-top: 10px;
+            }
+            .outer .count
+            {
+                width: 50px;
+                border: 0px;
+                font-size: 250%;
+            }
+            .red{background-color:rgb(255, 0, 0);}
+            .yellow{background-color: rgb(255, 255, 0);}
+            .green{background-color: rgb(0, 255, 0);}
+        </style>
+    </head>
+
+    <body>
+      有点好玩的红绿灯~ヾ(≧▽≦*)o
+        <div class="outer">
+            <div id="red"></div>
+            <div id="yellow"></div>
+            <div id="green"></div>
+            <div id="count" class="count"></div>
+        </div>
+
+        <script>
+            // 灯对象
+            var lamp = 
+            {
+                red:{
+                    main:document.getElementById('red'),
+                    duration:30,
+                    color:['red','gray','gray'],
+                    next:'green'
+                },
+                yellow:{
+                    main:document.getElementById('yellow'),
+                    duration:5,
+                    color:['gray','yellow','gray'],
+                    next:'red'
+                },
+                green:{
+                    main:document.getElementById('green'),
+                    duration:25,
+                    color:['gray','gray','green'],
+                    next:'yellow'
+                },
+                //颜色函数
+                ColorStyle(color){
+                    this.red.main.className = color[0];
+                    this.yellow.main.className = color[1];
+                    this.green.main.className = color[2];
+                }
+            }
+
+            // 倒计时对象
+            var count = 
+            {
+                main:document.getElementById('count'),
+                display : function(num){
+                    this.main.innerHTML=num;
+                }
+            }
+
+            // ↓ 最开始的情况
+            var now = lamp.yellow;
+            var duration = now.duration;
+            lamp.ColorStyle(now.color);
+            count.display(duration);
+            // ↑
+
+            // 一秒循环一次，让剩余时间减一；若变为零，则换灯
+            
+            function change()
+            {
+                if(-- duration <= 0)
+                {
+                    now = lamp[now.next];
+                    duration = now.duration;
+                    lamp.ColorStyle(now.color);
+                }
+                count.display(duration);
+            }
+            setInterval(function(){
+                if(-- duration <= 0)
+                {
+                    now = lamp[now.next];
+                    duration = now.duration;
+                    lamp.ColorStyle(now.color);
+                }
+                count.display(duration);
+            },1000);
+        </script>
+    </body>
+</html>
