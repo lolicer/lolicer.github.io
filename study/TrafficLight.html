@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8" />
@@ -27,20 +28,55 @@
                 border: 0px;
                 font-size: 250%;
             }
-            .red{background-color:rgb(255, 0, 0);}
-            .yellow{background-color: rgb(255, 255, 0);}
-            .green{background-color: rgb(0, 255, 0);}
+            .red{
+                background-color:red;
+                animation-name: red_flash;
+                animation-duration: 1000ms;
+                animation-iteration-count: 5;
+                animation-delay: 25s;
+            }
+            .yellow{
+                background-color: yellow;
+                animation-name: yellow_flash;
+                animation-duration: 1000ms;
+                animation-iteration-count: 3;
+                animation-delay: 2s;
+            }
+            .green{
+                background-color: green;
+                animation-name: green_flash;
+                animation-duration: 1000ms;
+                animation-iteration-count: 4;
+                animation-delay: 21s;
+            }
+
+            @keyframes red_flash
+            {
+                40% {background-color: red;}
+                to {background-color: white};
+            }
+            @keyframes yellow_flash
+            {
+                40% {background-color: yellow;}
+                to {background-color: white};
+            }
+            @keyframes green_flash
+            {
+                40% {background-color: green;}
+                to {background-color: white};
+            }
         </style>
     </head>
 
-    <body>
-        <div style="text-align: center;"><span style="font-size: 200%;">ヾ(≧▽≦*)o</span><br><br></div>
+    <body background="img/police.jpg">
+        <div style="text-align:center;"><span style="font-size: 200%;">ヾ(≧▽≦*)o</span><br><br></div>
         <div class="outer">
             <div id="red"></div>
             <div id="yellow"></div>
             <div id="green"></div>
             <div id="count" class="count"></div>
         </div>
+        
 
         <script>
             // 灯对象
@@ -100,15 +136,23 @@
                 }
                 count.display(duration);
             }
-            setInterval(function(){
-                if(-- duration <= 0)
+
+            setInterval(
+                function()
                 {
-                    now = lamp[now.next];
-                    duration = now.duration;
-                    lamp.ColorStyle(now.color);
-                }
-                count.display(duration);
-            },1000);
+                    if(-- duration <= 0)
+                    {
+                        now = lamp[now.next];
+                        duration = now.duration;
+                        lamp.ColorStyle(now.color);
+                    }
+                    if(duration <= 2)
+                    {
+                        // 闪烁 400-100
+                        
+                    }
+                    count.display(duration);
+                },1000);
         </script>
     </body>
 </html>
