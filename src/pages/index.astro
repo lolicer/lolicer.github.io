@@ -1,0 +1,16 @@
+---
+import { getCollection } from 'astro:content';
+const posts = (await getCollection('posts')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+<!doctype html>
+<html lang="zh-CN">
+  <head><meta charset="utf-8" /><meta name="viewport" content="width=device-width" /><title>我的博客</title></head>
+  <body>
+    <main>
+      <h1>我的博客</h1>
+      <h2>文章</h2>
+      <ul>{posts.map(post => <li><a href={`/posts/${post.id}/`}>{post.data.title}</a> <time datetime={post.data.date.toISOString()}>{post.data.date.toISOString().slice(0, 10)}</time></li>)}</ul>
+    </main>
+  </body>
+</html>
+<style>body { font-family: system-ui, sans-serif; line-height: 1.7; margin: 0; } main { max-width: 48rem; margin: 4rem auto; padding: 0 1.25rem; } time { color: #666; font-size: .9em; }</style>
