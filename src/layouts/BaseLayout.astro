@@ -23,6 +23,7 @@ const {
 
 <html lang={config.locale.lang}>
   <head>
+    {import.meta.env.DEV && <link rel='stylesheet' href='/@id/__x00__/__uno.css?direct' />}
     <BaseHead {articleDate} {description} {ogImage} {title} />
     <ThemeProvider />
   </head>
