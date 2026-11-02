@@ -16,7 +16,7 @@ export const theme: ThemeUserConfig = {
   customCss: [],
   header: { menu: [ { title: '文章', link: '/blog' }, { title: '归档', link: '/archives' }, { title: '标签', link: '/tags' } ] },
   footer: { year: `© ${new Date().getFullYear()}`, links: [], credits: true, social: [ { icon: 'github', label: 'GitHub', href: 'https://github.com/lolicer' }, { icon: 'rss', label: 'RSS', href: '/rss.xml' } ] },
-  content: { externalLinks: { content: ' ↗', properties: { style: 'user-select:none' } }, blogPageSize: 8, share: [] }
+  content: { externalLinks: { content: ' ↗', properties: { style: 'user-select:none' } }, blogPageSize: 8, imageCaption: true, share: [] }
 }
 export const integ: IntegrationUserConfig = {
   pagefind: true,
